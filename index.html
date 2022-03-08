@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hubballi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <h1>ToDo List</h1>
+            <span>with Pomodoro</span>
+        </div>
+
+        <div class="container">
+        
+            <div class="card">
+                <h2 class="title">Title</h2>
+                <div class="items" id='items'>
+                   <div class="item">
+                        <span>Item</span>
+                        <div class="btn">
+                            <ion-icon name="create"></ion-icon>
+                            <ion-icon name="trash"></ion-icon>
+                        </div>
+                    </div> 
+                </div>
+                <div class='btn submit'>
+                    <input placeholder='Type your task here' id="input"/>
+        
+                    <div class='send'>
+                        <ion-icon name="send" onclick="addTask()"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        <p class="credit">Created by Didier Mosley</p>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>

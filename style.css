@@ -1,0 +1,131 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Hubballi', cursive;
+    /* word-break: break-all; */
+  }
+  
+  .app{
+    background: #18568f;
+    height: 100vh;
+  }
+  
+  .header{
+    text-align: center;
+    background:rgba(0,0,0,0.3);
+    padding: 10px 0;
+    backdrop-filter: blur(5px);
+  }
+  
+  .container{
+    min-height:70%;
+    width:100vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .svg{
+    background: transparent;
+    position: absolute;
+  }
+  
+  .card{
+    min-height: 500px;
+    width:500px;
+    background:#f7f7f7;
+    border-radius:1rem;
+    margin:90px 5%;
+    backdrop-filter: blur(5px);
+  
+  }
+  
+  .title{
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 5px;
+  }
+  
+  .item{
+    height:50px;
+    background: #fff;
+    margin:10px;
+    border-radius: 1rem;
+    display:flex;
+    justify-content: space-between;
+  }
+  
+  .item span{
+    font-size: 1.5rem;
+    margin:15px;
+    vertical-align: middle;
+  }
+  
+  .btn ion-icon{
+    color:#46457e;
+    font-size:2rem;
+    background: #f7f7f7;
+    margin:10px 10px 10px 0;
+    border-radius: .3rem;
+    transition:all .3s;
+  }
+  
+  .btn ion-icon[name="create"]:hover,ion-icon[name='send']:hover{
+    color:#f7f7f7;
+    background:#46457e;
+    cursor:pointer;
+  }
+  
+  .btn ion-icon[name="trash"]:hover{
+    color:#fff;
+    background:#e00202;
+    cursor:pointer;
+  }
+  
+  .btn ion-icon[name="trash"]{
+    color:#e00202;
+    background:#f7f7f7;
+  }
+  
+  .credit{
+    color:#f7f7f7;
+    text-align: center;
+    width: 100vw;
+    padding:25px;
+    background: #172b57;
+    position: absolute;
+    bottom: 0;
+    border-radius:2rem 2rem 0 0;
+    height:10%;
+  }
+  
+  input{
+    height:50px;
+    margin:10px;
+    border:none;
+    border-radius:1rem;
+    width:80%;
+    padding:7px;
+    font-size: 1.3rem;
+  }
+  
+  .submit{
+    display:flex;
+    border-top: 1px solid rgb(218, 218, 218);
+  }
+  
+  .send{ 
+    height:50px;
+    margin:10px 10px 10px 0;
+    background:#fff;
+    display:flex;
+    align-items: center;
+    border-radius: 1rem;
+    padding:0 10px;
+  }
+  
+  .btn ion-icon[name='send']{
+    margin:0;
+  }
