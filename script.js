@@ -1,44 +1,65 @@
+"use strict";
 const items = document.getElementById('items');
 const input = document.getElementById('input');
-const edit = document.getElementById('edit');
-const remove = document.getElementById('remove');
+const edit = document.querySelectorAll(".edit");
+const remove = document.querySelectorAll(".remove");
+
 
 let n = 0;
 
 const addTask = () =>{
     const tasks = document.createElement("DIV");
     tasks.classList.add('item');
-
+    
     const taskName = document.createElement("SPAN");
     taskName.classList.add('task-n');
     taskName.textContent = input.value;
+    taskName.setAttribute("id", n);
     input.value='';
-
+    
     const btnContainer = document.createElement("DIV");
     btnContainer.classList.add('btn');
 
     const create = document.createElement("ion-icon");
     create.setAttribute("name", "create");
-    create.setAttribute("id","edit");
-    create.setAttribute("id","edit");
+    create.setAttribute("class","edit");
 
     const trash = document.createElement("ion-icon");
     trash.setAttribute("name", "trash");
-    trash.setAttribute("id","remove");
+    trash.setAttribute("class","remove");
+    trash.setAttribute("id", n);
 
     btnContainer.appendChild(create);
     btnContainer.appendChild(trash);
     tasks.appendChild(taskName);
     tasks.appendChild(btnContainer);
     items.appendChild(tasks);
+    n++;
 }
 
-edit.addEventListener("click",e=>{
-    if (e.target.getAttribute("name") == "create") {
-        document.querySelector('.task-n').setAttribute("contenteditable", "true");
-        e.target.setAttribute("name", "repeat");
-    } else {
-        e.target.setAttribute("name", "create");
-        document.querySelector('.task-n').setAttribute("contenteditable", "false");
+items.addEventListener('click',(e)=>{
+    console.log(e.target.tagName);
+    if(e.target && e.target.className.split(' ')[0] === "edit") editTask(e);
+    if(e.target && e.target.className.split(' ')[0] === "remove") removeTask(e);
+});
+
+const editable = (e,boolean)=>{
+    e.forEach(element => {
+        element.setAttribute("contenteditable", boolean);
+    });
+}
+
+function editTask(e){
+    const span = document.querySelectorAll(".task-n");
+    if(e.target.getAttribute("name") == "create"){
+        e.target.setAttribute("name","repeat");
+        editable(span, "true");
+    }else{
+        e.target.setAttribute("name","create");
+        editable(span, "false")
     }
-})
+}
+
+function removeTask(e){
+    
+}

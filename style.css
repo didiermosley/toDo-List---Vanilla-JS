@@ -72,7 +72,7 @@
     transition:all .3s;
   }
   
-  .btn #edit:hover,ion-icon[name='send']:hover{
+  .btn .edit:hover,ion-icon[name='send']:hover{
     color:#f7f7f7;
     background:#46457e;
     cursor:pointer;
