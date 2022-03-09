@@ -39,6 +39,7 @@ const addTask = () =>{
 
 items.addEventListener('click',(e)=>{
     console.log(e.target.tagName);
+    // Two ways to get a specific class when the element has more than one class.
     if(e.target && e.target.classList[0] === "edit") editTask(e);
     if(e.target && e.target.className.split(' ')[0] === "remove") removeTask(e);
 });
