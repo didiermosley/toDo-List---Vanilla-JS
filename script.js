@@ -10,11 +10,11 @@ let n = 0;
 const addTask = () =>{
     const tasks = document.createElement("DIV");
     tasks.classList.add('item');
+    tasks.setAttribute("id", n);
     
     const taskName = document.createElement("SPAN");
     taskName.classList.add('task-n');
     taskName.textContent = input.value;
-    taskName.setAttribute("id", n);
     input.value='';
     
     const btnContainer = document.createElement("DIV");
@@ -39,7 +39,7 @@ const addTask = () =>{
 
 items.addEventListener('click',(e)=>{
     console.log(e.target.tagName);
-    if(e.target && e.target.className.split(' ')[0] === "edit") editTask(e);
+    if(e.target && e.target.classList[0] === "edit") editTask(e);
     if(e.target && e.target.className.split(' ')[0] === "remove") removeTask(e);
 });
 
@@ -61,5 +61,9 @@ function editTask(e){
 }
 
 function removeTask(e){
-    
+    let it = e.target;
+    let parent = it.parentElement;
+    let grandparent = parent.parentElement;
+    console.log(grandparent);
+    grandparent.remove();
 }
