@@ -1,5 +1,9 @@
 :root{
   --font-color: #f7f7f7;
+  --dark-font-color: #404145;
+  --first-gradient:linear-gradient(90deg, #9ebd13 0%, #008552 100%);
+  --second-gradient: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+  --third-gradient: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
 
 *{
@@ -51,16 +55,18 @@
     text-align: center;
     font-size: 2.5rem;
     padding: 5px;
-    color: #2b2b2b;
+    color: var(--dark-font-color);
   }
   
   .item{
-    height:50px;
+    /* height:50px; */
     background: #fff;
     margin:10px;
     border-radius: 1rem;
     display:flex;
     justify-content: space-between;
+    animation: appear .3s;
+    overflow: hidden;
   }
   
   .item span{
@@ -147,22 +153,86 @@
     margin:10px;
     background: #fff;
     border-radius:1em;
+    overflow: hidden;
     text-align: center;
-    padding:10px;
+    display: flex;
+  }
+  
+  .btns, .count-info{
+    /* padding:10px; */
+    width:50%;
   }
 
-  .btn-pomo{
-    border: .5px solid transparent;
-    background: #27385f;
+  .btns{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    border-radius: 1em 0 0 1em;
+    height: 100%;
+  }
+
+  .btn-pomo, .btn-short, .btn-long{
+    border: none;
+    background: var(--first-gradient);
     color: var(--font-color);
     padding: 5px;
-    border-radius: 1rem;
-    transition: background .3s;
+    font-size: 1.4em;
+    transition: all .3s;
+    height: 35px;
   }
 
-  .btn-pomo:hover{
-    background: #ffffff;
+  .btn-short{
+    background: var(--second-gradient);
+  }
+
+  .btn-long{
+    background: var(--third-gradient);
+  }
+
+  .btn-pomo:hover, .btn-short:hover, .btn-long:hover{
+    /* background: #ffffff; */
     cursor: pointer;
-    color: #27385f;
-    border: .5px solid #27385f;
+    /* color: #27385f; */
+    font-size: 2em;
+    height: 40px;
+    /* border: .5px solid #27385f; */
+  }
+
+  @keyframes appear{
+    from{
+      height:0;
+    }
+    to{
+      height:50px;
+    }
+  }
+
+  @keyframes disappear{
+    from{
+      height:50px;
+      opacity: 1;
+    }
+    to{
+      transform:translateY(50px);
+      opacity: 0;
+      /* display: none; */
+    }
+  }
+
+  .count-info{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pomodoro{
+    display:block;
+  }
+
+  .s-break, .l-break{
+    display:none;
+  }
+
+  .block{
+    display: block;
   }

@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 const items = document.getElementById('items');
 const input = document.getElementById('input');
 const edit = document.querySelectorAll(".edit");
@@ -57,9 +57,10 @@ send.addEventListener("click",()=>{
 });
 
 items.addEventListener('click',(e)=>{
-    console.log(e.target.tagName);
+    console.log(e.target.classList[0]);
     // Two ways to get a specific class when the element has more than one class.
     if(e.target && e.target.classList[0] === "clock") counter(e);
+    if(e.target && e.target.classList == "count-info")count(e);
     if(e.target && e.target.classList[0] === "edit") editTask(e);
     if(e.target && e.target.className.split(' ')[0] === "remove") removeTask(e);
 });
@@ -86,21 +87,40 @@ function removeTask(e){
     let parent = it.parentElement;
     let grandparent = parent.parentElement;
     console.log(grandparent);
-    grandparent.remove();
+    grandparent.style.animation = `disappear .3s`;
+    // grandparent.style.display = `none`;
+    setTimeout(()=>{
+        grandparent.remove();
+    },300);
 }
+
+let min = 25;
+let seconds = 00;
 
 function counter(e){
     let container = e.target.parentElement.parentElement.parentElement;
     let code = `<div class="counter">
-    <button type="submit" class="btn-pomo">Pomodoro</button>
-    <button type="submit" class="btn-pomo">Short Break</button>
-    <button type="submit" class="btn-pomo">Long Break</button>
-    <h2 class="pomodoro">00:00</h2>
-    <h2 class="s-break">00:00</h2>
-    <h2 class="l-break">00:00</h2>
-    <span>min sec</span>
+    <div class="btns">
+        <button type="submit" class="btn-pomo">Pomodoro</button>
+        <button type="submit" class="btn-short">Short Break</button>
+        <button type="submit" class="btn-long">Long Break</button>
+    </div>
+    <div class="count-info">
+        <h2 class="pomodoro">${min}:${seconds}</h2>
+        <h2 class="s-break">${min}:${seconds}</h2>
+        <h2 class="l-break">${min}:${seconds}</h2>
+        <span>min sec</span>
+    </div>
     </div>`;
 
     container.innerHTML += code;
     console.log(container);
+}
+
+function count(e){
+    console.log(e.target);
+    let mode = e.target;
+    if(mode == 'btn-pomo');
+    if(mode == 'btn-short');
+    if(mode == 'btn-long');
 }
