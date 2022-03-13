@@ -4,6 +4,9 @@ const input = document.getElementById('input');
 const edit = document.querySelectorAll(".edit");
 const remove = document.querySelectorAll(".remove");
 const add = document.getElementById('send');
+let pomodoro = document.querySelector(".pomodoro");
+let sBreak = document.querySelector(".s-break");
+let lBreak = document.querySelector(".l-break");
 
 
 let n = 0;
@@ -57,10 +60,12 @@ send.addEventListener("click",()=>{
 });
 
 items.addEventListener('click',(e)=>{
-    console.log(e.target.classList[0]);
+    console.log(e.target.tagName);
     // Two ways to get a specific class when the element has more than one class.
     if(e.target && e.target.classList[0] === "clock") counter(e);
-    if(e.target && e.target.classList == "count-info")count(e);
+    if(e.target && e.target.classList[0] === 'btn-pomo')reverseCount(25, pomodoro);
+    if(e.target && e.target.classList[0] === 'btn-short')reverseCount(5, sBreak);
+    if(e.target && e.target.classList[0] === 'btn-long') reverseCount(10, lBreak);
     if(e.target && e.target.classList[0] === "edit") editTask(e);
     if(e.target && e.target.className.split(' ')[0] === "remove") removeTask(e);
 });
@@ -94,8 +99,10 @@ function removeTask(e){
     },300);
 }
 
-let min = 25;
-let seconds = 00;
+let min;
+let seconds;
+console.log(typeof(parseInt(seconds)));
+
 
 function counter(e){
     let container = e.target.parentElement.parentElement.parentElement;
@@ -106,9 +113,9 @@ function counter(e){
         <button type="submit" class="btn-long">Long Break</button>
     </div>
     <div class="count-info">
-        <h2 class="pomodoro">${min}:${seconds}</h2>
-        <h2 class="s-break">${min}:${seconds}</h2>
-        <h2 class="l-break">${min}:${seconds}</h2>
+        <h2 class="pomodoro d-block">25:00<h2>
+        <h2 class="s-break">5:00</h2>
+        <h2 class="l-break">10:00</h2>
         <span>min sec</span>
     </div>
     </div>`;
@@ -117,10 +124,15 @@ function counter(e){
     console.log(container);
 }
 
-function count(e){
-    console.log(e.target);
-    let mode = e.target;
-    if(mode == 'btn-pomo');
-    if(mode == 'btn-short');
-    if(mode == 'btn-long');
+function reverseCount(e,object){
+    let s = 0;
+    setInterval(()=>{
+        if(s<=0){
+            s=60;
+            e-=1;
+        }
+        s -= 1;
+        object.textContent = `${e}:${s<10 ? "0"+s : s}`;
+        console.log(e,s);
+    },1000);
 }

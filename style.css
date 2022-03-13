@@ -225,7 +225,7 @@
     justify-content: center;
   }
 
-  .pomodoro{
+  .d-block{
     display:block;
   }
 
@@ -233,6 +233,6 @@
     display:none;
   }
 
-  .block{
-    display: block;
+  .d-none{
+    display: none;
   }
