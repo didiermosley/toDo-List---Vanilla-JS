@@ -161,12 +161,12 @@
   }
 
   .counter{
-    min-height:50px;
+    height:105px;
     margin:10px;
     background: #fff;
     border-radius:1em;
     overflow: hidden;
-    animation: appear2 3s;
+    animation: appear2 1s;
     text-align: center;
     display: flex;
   }
@@ -226,7 +226,7 @@
       height: 0;
     }
     to{
-      height: fit-content;
+      height:105px;
     }
   }
 
@@ -242,6 +242,15 @@
     }
   }
 
+  @keyframes disappearTimer{
+    from{
+      height:105px;
+    }
+    to{
+      height:0;
+    }
+  }
+
   .count-info{
     display:flex;
     flex-direction: column;
@@ -252,7 +261,7 @@
     display:block !important;
   }
 
-  .s-break, .l-break{
+  .s-break, .l-break, .timer{
     display:none;
   }
 

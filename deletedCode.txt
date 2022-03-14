@@ -1,0 +1,37 @@
+
+// if(e.target && e.target.classList[0] === "clock") counter(e);
+
+
+// let container = e.target.parentElement.parentElement.parentElement;
+    /*let code = `<div class="counter">
+    <div class="btns">
+        <button type="submit" class="btn-pomo">Pomodoro</button>
+        <button type="submit" class="btn-short">Short Break</button>
+        <button type="submit" class="btn-long">Long Break</button>
+    </div>
+    <div class="count-info">
+        <h2 class="pomodoro d-block">25:00</h2>
+        <h2 class="s-break">5:00</h2>
+        <h2 class="l-break">10:00</h2>
+        <span>min sec</span>
+    </div>
+    </div>`;
+
+    // Put counter as the first element of the parent.
+    items.innerHTML = code + items.innerHTML;*/
+    // console.log(container);
+    
+    /*if(!isWorking){
+        isWorking = false;
+        return false
+    }else{
+        isWorking = true;
+        countDown();
+    };*/
+    
+    
+let min;
+let seconds;
+console.log(typeof(parseInt(seconds)));
+
+/* display: none; */
