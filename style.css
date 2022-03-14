@@ -79,9 +79,16 @@
     color:#46457e;
     font-size:2rem;
     background: #f7f7f7;
-    margin:10px 10px 10px 0;
     border-radius: .3rem;
     transition:all .3s;
+  }
+
+  .edit, .remove{
+    margin:10px 10px 10px 0;
+  }
+
+  .clock{
+    margin:0;
   }
   
   .btn .edit:hover,ion-icon[name='send']:hover,.clock:hover{
@@ -134,14 +141,18 @@
     border-top: 1px solid rgb(218, 218, 218);
   }
   
-  .send{ 
+  .send{
     height:50px;
-    margin:10px 10px 10px 0;
+    margin:10px;
     background:#fff;
     display:flex;
     align-items: center;
     border-radius: 1rem;
     padding:0 10px;
+  }
+
+  .send ion-icon{
+    margin: 5px;
   }
   
   .btn ion-icon[name='send']{
@@ -194,7 +205,8 @@
     cursor: pointer;
     /* color: #27385f; */
     font-size: 2em;
-    height: 40px;
+    padding: 0;
+    /* height: 40px; */
     /* border: .5px solid #27385f; */
   }
 
@@ -226,7 +238,7 @@
   }
 
   .d-block{
-    display:block;
+    display:block !important;
   }
 
   .s-break, .l-break{
@@ -234,5 +246,5 @@
   }
 
   .d-none{
-    display: none;
+    display: none !important;
   }

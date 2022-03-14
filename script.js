@@ -1,9 +1,11 @@
 // "use strict";
+const mainContainer = document.querySelector(".app");
 const items = document.getElementById('items');
 const input = document.getElementById('input');
 const edit = document.querySelectorAll(".edit");
 const remove = document.querySelectorAll(".remove");
 const add = document.getElementById('send');
+const clock = document.querySelector(".clock");
 let pomodoro = document.querySelector(".pomodoro");
 let sBreak = document.querySelector(".s-break");
 let lBreak = document.querySelector(".l-break");
@@ -59,10 +61,12 @@ send.addEventListener("click",()=>{
     }
 });
 
+clock.addEventListener("click",counter);
+
 items.addEventListener('click',(e)=>{
     console.log(e.target.tagName);
     // Two ways to get a specific class when the element has more than one class.
-    if(e.target && e.target.classList[0] === "clock") counter(e);
+    // if(e.target && e.target.classList[0] === "clock") counter(e);
     if(e.target && e.target.classList[0] === 'btn-pomo')reverseCount(25, pomodoro);
     if(e.target && e.target.classList[0] === 'btn-short')reverseCount(5, sBreak);
     if(e.target && e.target.classList[0] === 'btn-long') reverseCount(10, lBreak);
@@ -104,8 +108,8 @@ let seconds;
 console.log(typeof(parseInt(seconds)));
 
 
-function counter(e){
-    let container = e.target.parentElement.parentElement.parentElement;
+function counter(){
+    // let container = e.target.parentElement.parentElement.parentElement;
     let code = `<div class="counter">
     <div class="btns">
         <button type="submit" class="btn-pomo">Pomodoro</button>
@@ -113,26 +117,55 @@ function counter(e){
         <button type="submit" class="btn-long">Long Break</button>
     </div>
     <div class="count-info">
-        <h2 class="pomodoro d-block">25:00<h2>
+        <h2 class="pomodoro d-block>25:00<h2>
         <h2 class="s-break">5:00</h2>
         <h2 class="l-break">10:00</h2>
         <span>min sec</span>
     </div>
     </div>`;
 
-    container.innerHTML += code;
-    console.log(container);
+    // Put counter as the first element of the parent.
+    items.innerHTML = code + items.innerHTML;
+    // console.log(container);
 }
 
-function reverseCount(e,object){
+let isWorking = false;
+
+function reverseCount(e, object) {
     let s = 0;
-    setInterval(()=>{
-        if(s<=0){
-            s=60;
-            e-=1;
-        }
-        s -= 1;
-        object.textContent = `${e}:${s<10 ? "0"+s : s}`;
-        console.log(e,s);
-    },1000);
+    isWorking = true;
+
+    if (e == 25) {
+        object.classList.remove("d-none");
+        object.classList.toggle("d-block");
+        lBreak.classList.remove("d-block");
+        sBreak.classList.remove("d-block");
+    } else if (e == 5) {
+        object.classList.toggle("d-block");
+        pomodoro.classList.add("d-none");
+        lBreak.classList.remove("d-block");
+    } else {
+        object.classList.toggle("d-block");
+        pomodoro.classList.add("d-none");
+        sBreak.classList.remove("d-block");
+    }
+
+    if(isWorking == true){
+        clearInterval(countDown());
+        countDown();
+    }else{
+        countDown();
+    }
+
+    function countDown() {
+        setInterval(() => {
+            if (s <= 0) {
+                s = 60;
+                e -= 1;
+            }
+            s -= 1;
+            object.textContent = `${e}:${s < 10 ? "0" + s : s}`;
+            console.log(e, s);
+        }, 1000);
+    }
 }
