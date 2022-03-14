@@ -26,10 +26,6 @@ const addTask = () =>{
     const btnContainer = document.createElement("DIV");
     btnContainer.classList.add('btn');
 
-    const pomodoro = document.createElement("ion-icon");
-    pomodoro.setAttribute("name", "timer");
-    pomodoro.classList.add("clock");
-
     const create = document.createElement("ion-icon");
     create.setAttribute("name", "create");
     create.setAttribute("class","edit");
@@ -39,7 +35,6 @@ const addTask = () =>{
     trash.setAttribute("class","remove");
     trash.setAttribute("id", n);
 
-    btnContainer.appendChild(pomodoro);
     btnContainer.appendChild(create);
     btnContainer.appendChild(trash);
     tasks.appendChild(taskName);
@@ -139,25 +134,28 @@ function reverseCount(e, object) {
         object.classList.toggle("d-block");
         lBreak.classList.remove("d-block");
         sBreak.classList.remove("d-block");
+        mainContainer.style.background = `#008552`;
     } else if (e == 5) {
         object.classList.toggle("d-block");
         pomodoro.classList.add("d-none");
         lBreak.classList.remove("d-block");
+        mainContainer.style.background = `#3F2B96`;
     } else {
         object.classList.toggle("d-block");
         pomodoro.classList.add("d-none");
         sBreak.classList.remove("d-block");
+        mainContainer.style.background =  `#daae51`;
     }
 
-    if(isWorking != true){
+    /*if(!isWorking){
+        isWorking = false;
+        return false
+    }else{
         isWorking = true;
         countDown();
-    }else{
-        isWorking = false;
-        clearInterval(countDown());
-    }
+    };*/
 
-    function countDown() {
+   
         setInterval(() => {
             if (s <= 0) {
                 s = 60;
@@ -167,5 +165,4 @@ function reverseCount(e, object) {
             object.textContent = `${e}:${s < 10 ? "0" + s : s}`;
             console.log(e, s);
         }, 1000);
-    }
 }

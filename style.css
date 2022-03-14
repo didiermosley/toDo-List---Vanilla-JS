@@ -18,6 +18,7 @@
     background: #27385f;
     min-height: 100vh;
     z-index:100;
+    transition: background .4s;
   }
   
   .header{
@@ -165,6 +166,7 @@
     background: #fff;
     border-radius:1em;
     overflow: hidden;
+    animation: appear2 3s;
     text-align: center;
     display: flex;
   }
@@ -216,6 +218,15 @@
     }
     to{
       height:50px;
+    }
+  }
+
+  @keyframes appear2{
+    from{
+      height: 0;
+    }
+    to{
+      height: fit-content;
     }
   }
 
