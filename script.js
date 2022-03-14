@@ -117,7 +117,7 @@ function counter(){
         <button type="submit" class="btn-long">Long Break</button>
     </div>
     <div class="count-info">
-        <h2 class="pomodoro d-block>25:00<h2>
+        <h2 class="pomodoro d-block">25:00</h2>
         <h2 class="s-break">5:00</h2>
         <h2 class="l-break">10:00</h2>
         <span>min sec</span>
@@ -133,7 +133,6 @@ let isWorking = false;
 
 function reverseCount(e, object) {
     let s = 0;
-    isWorking = true;
 
     if (e == 25) {
         object.classList.remove("d-none");
@@ -150,11 +149,12 @@ function reverseCount(e, object) {
         sBreak.classList.remove("d-block");
     }
 
-    if(isWorking == true){
-        clearInterval(countDown());
+    if(isWorking != true){
+        isWorking = true;
         countDown();
     }else{
-        countDown();
+        isWorking = false;
+        clearInterval(countDown());
     }
 
     function countDown() {
