@@ -103,7 +103,7 @@ function counter(){
     counterCont.classList.toggle("d-block");
 }
 
-let isWorking = false;
+let isWorking = false, interval;
 
 function reverseCount(e, object) {
     let s = 0;
@@ -114,7 +114,7 @@ function reverseCount(e, object) {
         lBreak.classList.remove("d-block");
         sBreak.classList.remove("d-block");
         mainContainer.style.background = `#008552`;
-    } else if (e == 5) {
+    } else if (e == 1) {
         object.classList.toggle("d-block");
         pomodoro.classList.add("d-none");
         lBreak.classList.remove("d-block");
@@ -128,16 +128,22 @@ function reverseCount(e, object) {
 
 
    
-        let interval = setInterval(() => {
+        interval = setInterval(() => {
             if (s <= 0) {
                 s = 60;
                 e -= 1;
-            }else if(s == 0 && e ==0){
-                clearInterval(interval);
-                object.style.color = `red`;
             }
             s -= 1;
-            object.textContent = `${e}:${s < 10 ? "0" + s : s}`;
+            object.textContent = `${e<1 ? "0" + e : e }:${s < 10 ? "0" + s : s}`;
+            if(s == 0 && e == 0){
+                stopCounter();
+                object.style.color = `red`;
+            }
             console.log(e, s);
         }, 1000);
 }
+
+function stopCounter(){
+    clearInterval(interval);
+}
+
