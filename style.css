@@ -16,7 +16,7 @@
   
   .app{
     background: #27385f;
-    min-height: 100vh;
+    height: 100vh;
     z-index:100;
     transition: background .4s;
   }

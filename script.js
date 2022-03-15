@@ -60,7 +60,7 @@ send.addEventListener("click",()=>{
 clock.addEventListener("click",counter);
 
 items.addEventListener('click',(e)=>{
-    console.log(e.target.classList);
+    console.log(e.target.classList[0]);
     // Two ways to get a specific class when the element has more than one class.
     if(e.target && e.target.classList[0] === 'btn-pomo')reverseCount(25, pomodoro);
     if(e.target && e.target.classList[0] === 'btn-short')reverseCount(1, sBreak);
@@ -70,18 +70,21 @@ items.addEventListener('click',(e)=>{
 });
 
 const editable = (e,boolean)=>{
-    e.forEach(element => {
-        element.setAttribute("contenteditable", boolean);
-    });
+    e.setAttribute("contenteditable", boolean);
+   
 }
 
 function editTask(e){
-    const span = document.querySelectorAll(".task-n");
-    if(e.target.getAttribute("name") == "create"){
-        e.target.setAttribute("name","repeat");
+    let element = e.target;
+    let parent = element.parentElement;
+    let itemContainer = parent.parentElement;
+    let span = itemContainer.firstChild;
+    // const span = document.querySelectorAll(".task-n");
+    if(element.getAttribute("name") == "create"){
+        element.setAttribute("name","repeat");
         editable(span, "true");
     }else{
-        e.target.setAttribute("name","create");
+        element.setAttribute("name","create");
         editable(span, "false")
     }
 }
@@ -125,22 +128,26 @@ function reverseCount(e, object) {
         sBreak.classList.remove("d-block");
         mainContainer.style.background =  `#daae51`;
     }
+    isWorking = true;
 
+    if(isWorking == true){
+        stopCounter();
+    }
+    
+    interval = setInterval(() => {
+        if (s <= 0) {
+            s = 60;
+            e -= 1;
+        }
+        s -= 1;
+        object.textContent = `${e<1 ? "0" + e : e }:${s < 10 ? "0" + s : s}`;
+        if(s == 0 && e == 0){
+            stopCounter();
+            object.style.color = `red`;
+        }
+        console.log(e, s);
+    }, 1000);
 
-   
-        interval = setInterval(() => {
-            if (s <= 0) {
-                s = 60;
-                e -= 1;
-            }
-            s -= 1;
-            object.textContent = `${e<1 ? "0" + e : e }:${s < 10 ? "0" + s : s}`;
-            if(s == 0 && e == 0){
-                stopCounter();
-                object.style.color = `red`;
-            }
-            console.log(e, s);
-        }, 1000);
 }
 
 function stopCounter(){
