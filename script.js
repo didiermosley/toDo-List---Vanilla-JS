@@ -14,6 +14,8 @@ let lBreak = document.querySelector(".l-break");
 
 let n = 0;
 
+
+
 const addTask = () =>{
     const tasks = document.createElement("DIV");
     tasks.classList.add('item');
@@ -21,8 +23,10 @@ const addTask = () =>{
     
     const taskName = document.createElement("SPAN");
     taskName.classList.add('task-n');
-    taskName.textContent = input.value;
+    localStorage.setItem(`task #${n+1}`, input.value);
     input.value='';
+    let infoT = localStorage.getItem(`task #${n+1}`);
+    taskName.textContent = infoT;
     
     const btnContainer = document.createElement("DIV");
     btnContainer.classList.add('btn');
@@ -47,7 +51,7 @@ const addTask = () =>{
 send.addEventListener("click",()=>{
     console.log(input.placeholder);
     if(input.value == ''){
-        input.style.color=`#blue`;
+        input.style.color=`blue`;
         input.placeholder='The field can not be empty 😁';
         return false;
     }else{
@@ -133,7 +137,8 @@ function reverseCount(e, object) {
     if(isWorking == true){
         stopCounter();
     }
-    
+
+    object.style.color = `#404145`;
     interval = setInterval(() => {
         if (s <= 0) {
             s = 60;
